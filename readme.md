@@ -5,28 +5,30 @@
 ![giabalanaipico overview](https://github.com/3araht/giabalanaipico/blob/main/pictures/giabalanaipico_overview.jpg)
 
 # giabalanaipico キーボード
-giabalanaipico キーボードは蛇腹の無いシンプルデザインのクロマチックボタンアコーディオンチックな MIDI キーボード （60 ベース + C-system 62 鍵 = 38 音） です。
-giabalanaipico は PC / Mac / iPad / iPhone / Android で動作します。
+giabalanaipico キーボードは [giabalanai](https://github.com/3araht/giabalanai) の姉妹品で、蛇腹の無いシンプルデザインのクロマチックボタンアコーディオンチックな MIDI キーボード （60 ベース + C-system 62 鍵 = 38 音） です。  
+giabalanai では Pro Micro という頭脳を使っていましたが、 giabalanaipico では Raspberry Pi Pico を使っています。  
+giabalanaipico は PC / Mac / iPad / iPhone / Android で動作します(ファームウェアの書き込み & キー配列の初期化・更新にだけ PC / Mac が必要です)。
 
 コネクタが Lightning タイプの iPad や iPhone で使う場合、下記に示すアダプターを使って電源供給しながら使えることを確認しています。
 iPad や iPhone で giabalanaipico を使う場合には電源が必要ですので、必ず "[Lightning - USB 3カメラアダプタ](https://www.apple.com/jp/shop/product/MK0W2AM/A/)" をお使いください。
 "Lightning - USBカメラアダプタ" では電源供給ができません。
 
-USB-C タイプの iPad の場合は [USB-C Digital AV Multiportアダプタ](https://www.apple.com/jp/shop/product/MUF82ZA/A/)をお使いください。
+なお、USB-C タイプの iPad Air 4th Gen で試したところ、電源供給なしに問題なく動作させることができました。
 
 ロータリーエンコーダは長押しでモード切り替えレイヤーへ。短押しでミュート切り替え、回転させるとシステム音量の調整に使用することが可能です。
 
 # 外観および使用例
-姉妹品の giabalanai の使用例はこちら。  
-これらの動画 ([video1](https://github.com/3araht/giabalanai/blob/main/videos/giabalanai_keyboard.mp4), [video2](https://github.com/3araht/giabalanai/blob/main/videos/62buttons_38notes.mp4)) をご覧ください。
+姉妹品の [giabalanai](https://github.com/3araht/giabalanai) の使用例はこちら。  
+これらの動画 ([video1](https://youtu.be/EOIqms4lRcw), [video2](https://youtu.be/-KNHJdDH71s)) をご覧ください。
 
-[こちら](https://github.com/3araht/giabalanai/blob/main/videos/giabala_dangi_ep.16_theme_song_feat.Mr.Seto.mp4) は蛇腹談義のジングル(https://www.youtube.com/watch?v=WSVRJk6kDiM) を弾こうとしている様子です。
+
+[こちら](https://youtu.be/hDas2LR00f4) は蛇腹談義のジングル(https://www.youtube.com/watch?v=WSVRJk6kDiM) を弾こうとしている様子です。
 
 [私の YouTube チャンネル](https://www.youtube.com/channel/UC0zYtYMoxb0P7S8DPAkl0zA/) も併せてご覧ください。
 
 # キーボードキット
 ## ラインナップ
-全部で5通りのバリエーションがございます。
+giabalanai シリーズには全部で6通りのバリエーションがございます。
 
 |名前               | 説明                                                 |
 |------------------|------------------------------------------------------|
@@ -42,9 +44,11 @@ giabalanaipico キーボードキットはBOOTHでお求めいただけます。
 
 # ファームウェア
 
-giabalanaipico は QMK firmware を使っています。
+giabalanaipico は QMK firmware を使っています。  
+ただし 2021/11/13 現在 正式に Raspberry Pi に対応していません。  
+[せきごん さんの開拓された手法](https://scrapbox.io/self-made-kbds-ja/RP2040対応のQMK(非公式)を動かす) を使わせていただいております。  
 
-[こちら](https://github.com/3araht/giabalanaipico/blob/main/temp/qmk_firmware/keyboards/giabalanaipico) からベータ版をダウンロード下さい。
+giabalanaepico のソースコードは[こちら](https://github.com/3araht/giabalanaipico/blob/main/temp/qmk_firmware/keyboards/giabalanaipico) からダウンロード下さい。
 
 もしくは、こちらのコンパイル済の [uf2 file](https://github.com/3araht/giabalanaipico/blob/main/giabalanaipico_led_uf2.zip) をお使いください。
 
@@ -67,14 +71,20 @@ giabalanaepico や giabaLEnaipico は Raspberry Pi Pico 版です。
 
 一応先祖はイタリア出身という設定なので、イタリア語表記を使っています。
 そのため、 *jabaranai* ではなく giabalanai になっています。
+
+giabalanaipico の pico は Raspberry Pi Pico の pico に由来しています。  
 <!--- not jabaranai but giabalanai ジャバラナイの名前の由来 -->
 
 
-![giabalanai lighting](https://github.com/3araht/giabalanai/blob/main/pictures/giabalanai_lighting2.jpg)
+![tactsw](https://github.com/3araht/giabalanaipico/blob/main/pictures/right_side_tactsw.jpg)
+
+![tactsw2](https://github.com/3araht/giabalanaipico/blob/main/pictures/right_side_tactsw2.jpg)
+
+![tactsw3](https://github.com/3araht/giabalanaipico/blob/main/pictures/left_side_tactsw.jpg)
 
 # giabalanaipico keyboard
 giabalanaipico keyboard is a simple-design Chromatic Button Accordion-ish MIDI keyboard (60 bass + C-system 62 keys = 38 notes) that doesn't have bellows.
-giabalanaipico works with PC, Mac, iPad, iPhone, and Android devices.
+giabalanaipico works with PC, Mac, iPad, iPhone, and Android devices (PC or Mac is required during flashing the fimrware and initializing / adjusting the keymap ) .
 
 When using it with iPad or iPhone, it works when the below adapter is used with a power supply. The power supply is necessary to use giabalanaipico on iPad and iPhone. Make sure to use "[Lightning to USB 3 Camera Adapter](https://www.apple.com/shop/product/MK0W2AM/A/)", not "Lightning to USB Camera Adapter."  
 
@@ -85,16 +95,16 @@ A rotary encoder can be used to change the settings of giabalanaipico by long-pr
 
 
 # How it looks & how it works
-Check these short videos ([video1](https://github.com/3araht/giabalanai/blob/main/videos/giabalanai_keyboard.mp4), [video2](https://github.com/3araht/giabalanai/blob/main/videos/62buttons_38notes.mp4)) to see how it looks & how it works.  
-Those are actually not giabalanaipico but giabalanai, but you'll get the picture.
+Check these short videos ([video1](https://youtu.be/EOIqms4lRcw), [video2](https://youtu.be/-KNHJdDH71s)) to see how it looks & how it works.  
+Those are actually [giabalanai](https://github.com/3araht/giabalanai) and not giabalanaipico, but you'll get the picture.
 
-Here's another [video](https://github.com/3araht/giabalanai/blob/main/videos/giabala_dangi_ep.16_theme_song_feat.Mr.Seto.mp4), trying to play (pardon my poor playing skills) a theme song of Giabala-Dangi (https://www.youtube.com/watch?v=WSVRJk6kDiM).
+Here's another [video](https://youtu.be/hDas2LR00f4), trying to play (pardon my poor playing skills) a theme song of Giabala-Dangi (https://www.youtube.com/watch?v=WSVRJk6kDiM).
 
 Check [my YouTube channel](https://www.youtube.com/channel/UC0zYtYMoxb0P7S8DPAkl0zA/) for more videos.
 
 # Keyboard kit
 ## Lineup
-There are total 6 types:
+There are total 6 types in giabalanai series:
 
 |Name               | Notes                                               |
 |------------------|------------------------------------------------------|
@@ -113,14 +123,15 @@ All 6 models are available from [BOOTH](https://3araht.booth.pm/).
 
 # Firmware
 
-The giabalanaipico uses QMK for its firmware.
-Please download codes from [here](https://github.com/3araht/giabalanaipico/blob/main/temp/qmk_firmware/keyboards/giabalanaipico) as a "beta" version.
+The giabalanaipico uses QMK for its firmware. However, as of Nov 13th, 2021, QMK does not fully support Raspberry Pi...  
+Thanks to sekigon-gonnoc, [the method sekigon-gonnoc has built](https://scrapbox.io/self-made-kbds-ja/RP2040対応のQMK(非公式)を動かす) is used.  
+Please download codes from [here](https://github.com/3araht/giabalanaipico/blob/main/temp/qmk_firmware/keyboards/giabalanaipico).
 
 Or, use this pre-compiled [uf2 file](https://github.com/3araht/giabalanaipico/blob/main/giabalanaipico_led_uf2.zip) for your convenience.
 
 # Build Guide
 
-[Japanese Build Guide](https://github.com/3araht/giabalanaipico/blob/main/docs/build.md)  
+[Build Guide in Japanese](https://github.com/3araht/giabalanaipico/blob/main/docs/build.md)  
 Try [Google Translated guide](https://translate.google.com/translate?sl=ja&tl=en&u=https://github.com/3araht/giabalanaipico/blob/main/docs/build.md) for your language preferences. Trust me, it works quite well, more than expected.
 
 
