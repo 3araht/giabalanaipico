@@ -5,7 +5,7 @@
 ![giabalanaipico overview](https://github.com/3araht/giabalanaipico/blob/main/pictures/giabalanaipico_overview.jpg)
 
 # giabalanaipico キーボード
-giabalanaipico キーボードは [giabalanai](https://github.com/3araht/giabalanai) の姉妹品で、蛇腹の無いシンプルデザインのクロマチックボタンアコーディオンチックな MIDI キーボード （60 ベース + C-system 62 鍵 = 38 音） です。  
+giabalanaipico キーボードは [giabalanai](https://github.com/3araht/giabalanai) の姉妹品で、蛇腹の無いシンプルデザインのクロマチックボタンアコーディオンチックな MIDI キーボード （左手側 60 ベース + 右手側 62 鍵 ） です。  
 giabalanai では Pro Micro という頭脳を使っていましたが、 giabalanaipico では Raspberry Pi Pico を使っています。  
 giabalanaipico は PC / Mac / iPad / iPhone / Android で動作します(ファームウェアの書き込み & キー配列の初期化・更新にだけ PC / Mac が必要です)。
 
@@ -38,6 +38,8 @@ giabalanai シリーズには全部で6通りのバリエーションがござ�
 | giabaRInai       | giabalanai の左手側だけ版。giabaLEnai 持っているけどやっぱり左手側も欲しいという方向け。|
 | giabalanaipico   | giabalanai の Raspberry Pi Pico 版。右手側鍵盤が全て独立しました。また、レジスタスイッチも使えるようになりました。|
 | giabaLEnaipico   | giabalanaipico の右手側だけ版|
+なお、左右のキーボードを TRRS ケーブルで接続するのですが、 giabalanai (Pro Micro 版) と giabalanaipico (Raspberry Pi Pico 版) の混在（例：右手は giabalanai のキーボード、左手は giabalanaipico のキーボードを TRRS ケーブルで繋ぐこと）はお止めください。
+Pro Micro は 5 V, Raspberry Pi Pico は 3.3 V で動作しているのでシリアル信号線のレベルミスマッチが生じて壊す恐れがある & そもそもファームウェアが別物なので正常に動作しないと思います（壊したくないので試せてませんが）。  
 
 giabalanaipico キーボードキットはBOOTHでお求めいただけます。  
 [BOOTH 販売ページへのリンクはこちら](https://3araht.booth.pm/)。
@@ -66,7 +68,7 @@ https://www.instagram.com/3araht/
 ## その他
 #### giabalanai の名前の由来
 アコーディオンの蛇腹が無いところから来ています（ジャバラナイ）。  
-giabaLEnai （ジャバレナイ）　は蛇腹に加えて左手側キーボード（LEft）がないこと、giabaRInai （ジャバリナイ）は右手側キーボード（RIght）がないこと、giabaRInaix2 は giabaRInai の2つ版、ということを示しています。  
+giabaLEnai （ジャバレナイ） は蛇腹に加えて左手側キーボード（LEft）がないこと、giabaRInai （ジャバリナイ）は右手側キーボード（RIght）がないこと、giabaRInaix2 は giabaRInai の2つ版、ということを示しています。  
 giabalanaepico や giabaLEnaipico は Raspberry Pi Pico 版です。
 
 一応先祖はイタリア出身という設定なので、イタリア語表記を使っています。
