@@ -116,6 +116,8 @@ There are total 6 types in giabalanai series:
 | giabaRInai       | The left-hand side only version of giabalanai. For our friends who have giabaLEnai but want to have the left-hand side later on.|
 | giabalanaipico   | Raspberry Pi Pico version of giabalanai. All keys on the right side keyboard are now independent. Register switches are now available. |
 | giabaLEnaipico   |  The right-hand side only version of giabalanaipico |
+TRRS cable is used to connect left side keyboard and right side keyboard. Please refrain from mixing up giabalanai (Pro Micro edition) and giabalanaipico (Raspberry Pi Pico edition), for example: connecting the right hand side of giabalanai with the left hand side of giabalanaipico with a TRRS cable.
+Pro Micro works with 5 V while Raspberry Pi Pico with 3.3 V, and furthermore, the firmware itself is different and it wouldn't work at all. I haven't tested it and I won't since I'm scared damaging something.
 
 The keyboard kits are available from [Yushakobo](https://yushakobo.jp/shop/consign_giabalanaipico/), or from [BOOTH](https://3araht.booth.pm/).  
 
