@@ -38,6 +38,7 @@ giabalanai シリーズには全部で6通りのバリエーションがござ�
 | giabaRInai       | giabalanai の左手側だけ版。giabaLEnai 持っているけどやっぱり左手側も欲しいという方向け。|
 | giabalanaipico   | giabalanai の Raspberry Pi Pico 版。右手側鍵盤が全て独立しました。また、レジスタスイッチも使えるようになりました。|
 | giabaLEnaipico   | giabalanaipico の右手側だけ版|
+
 なお、左右のキーボードを TRRS ケーブルで接続するのですが、 giabalanai (Pro Micro 版) と giabalanaipico (Raspberry Pi Pico 版) の混在（例：右手は giabalanai のキーボード、左手は giabalanaipico のキーボードを TRRS ケーブルで繋ぐこと）はお止めください。
 Pro Micro は 5 V, Raspberry Pi Pico は 3.3 V で動作しているのでシリアル信号線のレベルミスマッチが生じて壊す恐れがある & そもそもファームウェアが別物なので正常に動作しないと思います（壊したくないので試せてませんが）。  
 
@@ -116,6 +117,7 @@ There are total 6 types in giabalanai series:
 | giabaRInai       | The left-hand side only version of giabalanai. For our friends who have giabaLEnai but want to have the left-hand side later on.|
 | giabalanaipico   | Raspberry Pi Pico version of giabalanai. All keys on the right side keyboard are now independent. Register switches are now available. |
 | giabaLEnaipico   |  The right-hand side only version of giabalanaipico |
+
 TRRS cable is used to connect left side keyboard and right side keyboard. Please refrain from mixing up giabalanai (Pro Micro edition) and giabalanaipico (Raspberry Pi Pico edition), for example: connecting the right hand side of giabalanai with the left hand side of giabalanaipico with a TRRS cable.
 Pro Micro works with 5 V while Raspberry Pi Pico with 3.3 V, and furthermore, the firmware itself is different and it wouldn't work at all. I haven't tested it and I won't since I'm scared damaging something.
 
