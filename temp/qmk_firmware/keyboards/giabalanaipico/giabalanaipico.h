@@ -87,7 +87,7 @@
 #define _________________FUNC__R___________________ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
 
 extern MidiDevice midi_device;
-void my_process_midi4Base(uint8_t channel, keyrecord_t *record,
+void my_process_midi4Bass(uint8_t channel, keyrecord_t *record,
                           uint8_t *chord_status, uint8_t chord, uint16_t root_note, bool is_single_bass);
 
 void my_process_midi4TriadChords(uint8_t channel, keyrecord_t *record,
