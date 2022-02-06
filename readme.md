@@ -53,7 +53,7 @@ giabalanaipico は QMK firmware を使っています。
 
 giabalanaepico のソースコードは[こちら](https://github.com/3araht/giabalanaipico/blob/main/temp/qmk_firmware/keyboards/giabalanaipico) からダウンロード下さい。
 
-もしくは、こちらのコンパイル済の [uf2 file](https://github.com/3araht/giabalanaipico/blob/main/giabalanaipico_led_uf2.zip) をお使いください。
+もしくは、こちらのコンパイル済の [uf2 file](https://github.com/3araht/giabalanaipico/blob/main/giabalanaipico_led_uf2) をお使いください。
 
 # ビルドガイド
 
@@ -133,7 +133,7 @@ The giabalanaipico uses QMK for its firmware. However, as of Nov 13th, 2021, QMK
 Thanks to sekigon-gonnoc, [the method sekigon-gonnoc has built](https://scrapbox.io/self-made-kbds-ja/RP2040対応のQMK(非公式)を動かす) is used.  
 Please download codes from [here](https://github.com/3araht/giabalanaipico/blob/main/temp/qmk_firmware/keyboards/giabalanaipico).
 
-Or, use this pre-compiled [uf2 file](https://github.com/3araht/giabalanaipico/blob/main/giabalanaipico_led_uf2.zip) for your convenience.
+Or, use this pre-compiled [uf2 file](https://github.com/3araht/giabalanaipico/blob/main/giabalanaipico_led_uf2) for your convenience.
 
 # Build Guide
 
