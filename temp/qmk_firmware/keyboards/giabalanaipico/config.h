@@ -70,6 +70,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //4: about 26kbps
 //5: about 20kbps
 
+// Right side has to be the master since 1, LED data is output from right side, and 2, Audio pin is prepared on right side as a reserve.
+#define MASTER_RIGHT
+
+// 2022/03/28 added. This might solve the "no left side communication via TRRS" issue.
+// #define SPLIT_USB_DETECT
+// SPLIT_USB_DETECT was not necessary since it is "Enabled by default on ChibiOS/ARM."
+
 //#define BACKLIGHT_PIN B7
 //#define BACKLIGHT_LEVELS 3
 //#define BACKLIGHT_BREATHING
