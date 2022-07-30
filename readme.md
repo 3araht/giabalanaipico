@@ -5,6 +5,9 @@
 ![giabalanaipico overview](https://github.com/3araht/giabalanaipico/blob/main/pictures/giabalanaipico_overview.jpg)
 
 # giabalanaipico キーボード
+
+✳︎ こちらは Raspberry Pi Pico 版の giabalanaipico シリーズについてのページです。 [Pro Micro 版の giabalanai シリーズにはこちら](https://github.com/3araht/giabalanai)を参照ください。
+
 giabalanaipico キーボードは [giabalanai](https://github.com/3araht/giabalanai) の姉妹品で、蛇腹の無いシンプルデザインのクロマチックボタンアコーディオンチックな MIDI キーボード （左手側 60 ベース + 右手側 62 鍵 ） です。  
 giabalanai では Pro Micro という頭脳を使っていましたが、 giabalanaipico では Raspberry Pi Pico を使っています。  
 giabalanaipico は PC / Mac / iPad / iPhone / Android で動作します(ファームウェアの書き込み & キー配列の初期化・更新にだけ PC / Mac が必要です)。
@@ -28,7 +31,7 @@ iPad や iPhone で giabalanaipico を使う場合には電源が必要ですの
 
 # キーボードキット
 ## ラインナップ
-giabalanai シリーズには全部で6通りのバリエーションがございます。
+giabalanai シリーズには全部で7通りのバリエーションがございます。
 
 |名前               | 説明                                                 |
 |------------------|------------------------------------------------------|
@@ -38,13 +41,17 @@ giabalanai シリーズには全部で6通りのバリエーションがござ�
 | giabaRInai       | giabalanai の左手側だけ版。giabaLEnai 持っているけどやっぱり左手側も欲しいという方向け。|
 | giabalanaipico   | giabalanai の Raspberry Pi Pico 版。右手側鍵盤が全て独立しました。また、レジスタスイッチも使えるようになりました。|
 | giabaLEnaipico   | giabalanaipico の右手側だけ版|
+| giabaRInaipico   | giabalanaipico の左手側だけ版。giabaLEnaipico 持っているけどやっぱり左手側も欲しいという方向け。|
 
 なお、左右のキーボードを TRRS ケーブルで接続するのですが、 giabalanai (Pro Micro 版) と giabalanaipico (Raspberry Pi Pico 版) の混在（例：右手は giabalanai のキーボード、左手は giabalanaipico のキーボードを TRRS ケーブルで繋ぐこと）はお止めください。
 Pro Micro は 5 V, Raspberry Pi Pico は 3.3 V で動作しているのでシリアル信号線のレベルミスマッチが生じて壊す恐れがある & そもそもファームウェアが別物なので正常に動作しないと思います（壊したくないので試せてませんが）。  
 
-giabalanaipico キーボードキットはBOOTHでお求めいただけます。  
-[BOOTH 販売ページへのリンクはこちら](https://3araht.booth.pm/)。
+giabalanaipico キーボードキットは遊舎工房さん、BOOTHでお求めいただけます。  
+[遊舎工房 販売ページへのリンクはこちら](https://yushakobo.jp/)。  
+遊舎工房さんでは、 [giabalanaipico](https://shop.yushakobo.jp/collections/keyboard/products/5080) 、 [giabaLEnaipico](https://shop.yushakobo.jp/collections/keyboard/products/5081) がお求めいただけます。
 
+[BOOTH 販売ページへのリンクはこちら](https://3araht.booth.pm/)。
+BOOTH では、全てお求めいただけます。
 # ファームウェア
 
 giabalanaipico は QMK firmware を使っています。  
@@ -86,6 +93,9 @@ giabalanaipico の pico は Raspberry Pi Pico の pico に由来しています�
 ![tactsw3](https://github.com/3araht/giabalanaipico/blob/main/pictures/left_side_tactsw.jpg)
 
 # giabalanaipico keyboard
+
+✳︎ This page is about giabalanaipico series, the Raspberry Pi Pico version. For [giabalanai series, the Pro Micro version, check here.](https://github.com/3araht/giabalanai)
+
 giabalanaipico keyboard is a simple-design Chromatic Button Accordion-ish MIDI keyboard (60 bass + C-system 62 keys = 38 notes) that doesn't have bellows.
 giabalanaipico works with PC, Mac, iPad, iPhone, and Android devices (PC or Mac is required during flashing the fimrware and initializing / adjusting the keymap ) .
 
@@ -107,7 +117,7 @@ Check [my YouTube channel](https://www.youtube.com/channel/UC0zYtYMoxb0P7S8DPAkl
 
 # Keyboard kit
 ## Lineup
-There are total 6 types in giabalanai series:
+There are total 7 types in giabalanai series:
 
 |Name               | Notes                                               |
 |------------------|------------------------------------------------------|
@@ -117,6 +127,7 @@ There are total 6 types in giabalanai series:
 | giabaRInai       | The left-hand side only version of giabalanai. For our friends who have giabaLEnai but want to have the left-hand side later on.|
 | giabalanaipico   | Raspberry Pi Pico version of giabalanai. All keys on the right side keyboard are now independent. Register switches are now available. |
 | giabaLEnaipico   |  The right-hand side only version of giabalanaipico |
+| giabaRInaipico   | The left-hand side only version of giabalanaipico. For our friends who have giabaLEnaipico but want to have the left-hand side later on.|
 
 TRRS cable is used to connect left side keyboard and right side keyboard. Please refrain from mixing up giabalanai (Pro Micro edition) and giabalanaipico (Raspberry Pi Pico edition), for example: connecting the right hand side of giabalanai with the left hand side of giabalanaipico with a TRRS cable.
 Pro Micro works with 5 V while Raspberry Pi Pico with 3.3 V, and furthermore, the firmware itself is different and it wouldn't work at all. I haven't tested it and I won't since I'm scared damaging something.
@@ -125,7 +136,7 @@ The keyboard kits are available from [Yushakobo](https://yushakobo.jp/shop/consi
 
 Click [here](https://www.tenso.com/en/static/lp_shop_booth) for BOOTH overseas shipping!
 
-All 6 models are available from [BOOTH](https://3araht.booth.pm/).
+All the models are available from [BOOTH](https://3araht.booth.pm/).
 
 # Firmware
 
