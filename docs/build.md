@@ -443,7 +443,7 @@ Wrote 130560 bytes to /Volumes/RPI-RP2/NEW.UF2.
 <img width="700" alt="Layer" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/20211128_giabalanaipico_layers.png">    
 
 エンコーダボタン長押ししたときの様子 Function(FN) Layer  
-<img width="700" alt="Layer" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/20211128_giabalanaipico_FN_layer.png">   
+<img width="700" alt="Layer" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/20220807_giabalanaipico_FN_layer.png">   
 
 
 

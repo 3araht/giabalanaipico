@@ -87,13 +87,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGB_MATRIX_ENABLE
 
 /* ws2812 RGB MATRIX */
-#    define DRIVER_LED_TOTAL 123
-#    define RGB_MATRIX_KEYPRESSES  // reacts to keypresses
+#   define DRIVER_LED_TOTAL 123
+#   define RGB_MATRIX_KEYPRESSES  // reacts to keypresses
 
 //  for all fingers used at once.
-#    define LED_HITS_TO_REMEMBER 10
+#   define LED_HITS_TO_REMEMBER 10
 
-#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 50
+#   define RGB_MATRIX_MAXIMUM_BRIGHTNESS 50
 
 // the above brighness setting has no effect on rgb_matrix_set_color().
 // Use darker colors instead.
@@ -259,21 +259,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
 
-/* disable these deprecated features by default */
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
-
 /* Bootmagic Lite key configuration */
 //#define BOOTMAGIC_LITE_ROW 0
 //#define BOOTMAGIC_LITE_COLUMN 0
 
 /* Audio */
 #ifdef AUDIO_ENABLE
-#    define AUDIO_PIN 8  // use EX1 = PB5 = PIN9 as Audio output
+#   define AUDIO_PIN 8  // use EX1 = PB5 = PIN9 as Audio output
 // #define DAC_SAMPLE_MAX 32768U
-#    define DAC_SAMPLE_MAX 65535U
+#   define DAC_SAMPLE_MAX 65535U
 // #define AUDIO_CLICKY
-#    define NO_MUSIC_MODE
+#   define NO_MUSIC_MODE
 // #define STARTUP_SONG SONG(FANTASIE_IMPROMPTU)
 // #define STARTUP_SONG SONG(NOCTURNE_OP_9_NO_1)
 // #define STARTUP_SONG SONG(USSR_ANTHEM)
@@ -296,9 +292,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    - etc.
 */
 #ifdef MIDI_ENABLE
-#    define MIDI_ADVANCED
+#   define MIDI_ADVANCED
 // Initial velocity value (avoid using 127 since it is used as a special number in some sound sources.)
-#    define MIDI_INITIAL_VELOCITY 117
+#   define MIDI_INITIAL_VELOCITY 117
 #endif  //  MIDI_ENABLE
 
 /*

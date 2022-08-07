@@ -17,6 +17,7 @@
 #ifdef CONSOLE_ENABLE
 #   include "print.h"
 #endif
+#include "version.h"
 extern volatile bool isLeftHand;
 
 // Alias layout macros that expand groups of keys.
@@ -52,10 +53,10 @@ extern rgb_config_t rgb_matrix_config;
 
 // To record the status of Bass Chord (single or dyad, default: dyad.)
 typedef union {
-  uint32_t raw;
-  struct {
-    bool isSingleBass:1;
-  };
+    uint32_t raw;
+    struct {
+        bool isSingleBass:1;
+    };
 } user_config_t;
 user_config_t user_config;
 
@@ -184,6 +185,7 @@ enum custom_keycodes {
 
     MY_CHORD_MAX = MI_CH_BDim7,
 
+    VERSION,
     CSYSTEM,  // C-SYSTEM layout
     BSYSTEM,  // B-SYSTEM layout
     CNTBASC,  // CouNTer BASs C-system layout
@@ -381,7 +383,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                CSYSTEM,   BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, CSYSFBS, XXXXXXX, MI_VELD, MI_VELU, RGB_MOD,            _______, _______,
              XXXXXXX, DF_QWER,   TGLBASS,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, TGLUVEL, MELDYAL, MELODYS, MELDYAH,                _______,
-               MI_OCT_N2, MI_OCT_N1, MI_OCT_0, MI_OCT_1, MI_OCT_2, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, EEP_RST,   _______, RGB_RMOD, RGB_MOD,
+               MI_OCT_N2, MI_OCT_N1, MI_OCT_0, MI_OCT_1, MI_OCT_2, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, VERSION, EEP_RST,   _______, RGB_RMOD, RGB_MOD,
              CSYSTEM, BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, CSYSFBS, XXXXXXX, MI_VELD, MI_VELU, RGB_MOD, RGB_TOG,                _______,
     _______,   DF_QWER,   TGLBASS,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, TGLUVEL, MELDYAL, MELODYS, MELDYAH,            _______, _______
   ),
@@ -517,14 +519,14 @@ void keyboard_post_init_user(void) {
 
 void toggle_isSingleBass(void) {
 #ifdef CONSOLE_ENABLE
-  uprintf("isSingleBass(before) %u\n", user_config.isSingleBass);
+    uprintf("isSingleBass(before) %u\n", user_config.isSingleBass);
 #endif
-  user_config.isSingleBass = !user_config.isSingleBass;
+    user_config.isSingleBass = !user_config.isSingleBass;
 #ifdef CONSOLE_ENABLE
-  uprintf("isSingleBass(after) %u\n", user_config.isSingleBass);
+    uprintf("isSingleBass(after) %u\n", user_config.isSingleBass);
 #endif
 
-  eeconfig_update_user(user_config.raw);
+    eeconfig_update_user(user_config.raw);
 }
 
 void toggle_MIDI_channel_separation(void) {
@@ -543,6 +545,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     uint8_t chord        = keycode - MY_CHORD_MIN;
 
     switch (keycode) {
+        case VERSION: // Output firmware info.
+            if (record->event.pressed) {
+                SEND_STRING(QMK_KEYBOARD ":" QMK_KEYMAP " @ " QMK_VERSION " | " QMK_BUILDDATE);
+            }
+            break;
+
         //  set default layer and save it to EEPROM when MIDI key layers are selected.
         case CSYSTEM:
             if (record->event.pressed) {
