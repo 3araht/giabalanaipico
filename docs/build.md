@@ -109,7 +109,7 @@ giabalanai と giabalanaipico の違い：
 足をニッパでカットします。足は勢いよく飛んで行くので、足を押さえながら切ると良いです。<br>
 <img width="700" alt="diode" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/diode_feet_cut.jpg">
 
-これを左手側基板は60箇所、右手側基板は39箇所半田付けします。
+これを左手側基板および右手側基板それぞれ 70 箇所半田付けします。
 
 なお、下図のR1 には何も実装しません。<br>
 <img width="700" alt="diode" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/R1_NoSolder_rpp_r02.jpg">

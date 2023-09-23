@@ -1,4 +1,4 @@
-/* Copyright 2020 3araht
+/* Copyright 2022 3araht
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,11 +13,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include QMK_KEYBOARD_H
+#include "version.h"
+
 #ifdef CONSOLE_ENABLE
 #   include "print.h"
 #endif
-#include "version.h"
 extern volatile bool isLeftHand;
 
 // Alias layout macros that expand groups of keys.
@@ -34,10 +36,32 @@ extern volatile bool isLeftHand;
 // Long press: go to _FN layer, tap: MUTE
 #define FN_MUTE  LT(_FN, KC_MUTE)
 #define SHIF_UP  RSFT_T(KC_UP)
-#define ADJ_EIS  LT(_ADJUST,KC_LANG2)
-#define MIS_KAN  LT(_MISC,KC_LANG1)
+#define ADJ_EIS  LT(_ADJUST,KC_LNG2)
+#define MIS_KAN  LT(_MISC,KC_LNG1)
 
-// Used to set octave to MI_OCT_0
+#define _________________QWERTY_L1_________________ KC_Q,    KC_W,    KC_E,    KC_R,    KC_T
+#define _________________QWERTY_L2_________________ KC_A,    KC_S,    KC_D,    KC_F,    KC_G
+#define _________________QWERTY_L3_________________ KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
+
+#define _________________QWERTY_R1_________________ KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
+#define _________________QWERTY_R2_________________ KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
+#define _________________QWERTY_R3_________________ KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
+
+#define _________________COLEMAK_L1________________ KC_Q,    KC_W,    KC_F,    KC_P,    KC_G
+#define _________________COLEMAK_L2________________ KC_A,    KC_R,    KC_S,    KC_T,    KC_D
+#define _________________COLEMAK_L3________________ KC_Z,    KC_X,    KC_C,    KC_V,    KC_B
+
+#define _________________COLEMAK_R1________________ KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
+#define _________________COLEMAK_R2________________ KC_H,    KC_N,    KC_E,    KC_I,    KC_O
+#define _________________COLEMAK_R3________________ KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
+
+#define _________________NUMBER_L__________________ KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define _________________NUMBER_R__________________ KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+
+#define _________________FUNC__L___________________ KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5
+#define _________________FUNC__R___________________ KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10
+
+// Used to set octave to QK_MIDI_OCTAVE_0
 extern midi_config_t midi_config;
 uint8_t midi_bass_ch = 0, midi_chord_ch = 0;  // By default, all use the same channel.
 
@@ -185,7 +209,7 @@ enum custom_keycodes {
 
     MY_CHORD_MAX = MI_CH_BDim7,
 
-    VERSION = USER00,
+    VERSION = QK_KB_0,
     CSYSTEM,  // C-SYSTEM layout
     BSYSTEM,  // B-SYSTEM layout
     CNTBASC,  // CouNTer BASs C-system layout
@@ -214,11 +238,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           TGLBASS, KC_VOLU, MI_CH_DbDom7, MI_CH_AbDom7, MI_CH_EbDom7, MI_CH_BbDom7, MI_CH_FDom7, MI_CH_CDom7, MI_CH_GDom7, MI_CH_DDom7, MI_CH_ADom7, MI_CH_EDom7, MI_CH_BDom7, MI_CH_FsDom7,
             FN_MUTE, KC_VOLD, MI_CH_DbDim7, MI_CH_AbDim7, MI_CH_EbDim7, MI_CH_BbDim7, MI_CH_FDim7, MI_CH_CDim7, MI_CH_GDim7, MI_CH_DDim7, MI_CH_ADim7, MI_CH_EDim7, MI_CH_BDim7, MI_CH_FsDim7,
 
-              MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3,  MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4,  MI_Bb_4, MI_Db_5, MI_E_5,             MI_OCTD,  MI_OCTU,
-            MI_Fs_2, MI_A_2,  MI_C_3,  MI_Eb_3, MI_Fs_3, MI_A_3,  MI_C_4,  MI_Eb_4, MI_Fs_4, MI_A_4,  MI_C_5,  MI_Eb_5, MI_Fs_5,               MI_BENDU,
-              MI_Ab_2, MI_B_2,  MI_D_3,  MI_F_3,  MI_Ab_3, MI_B_3,  MI_D_4,  MI_F_4,  MI_Ab_4, MI_B_4,  MI_D_5,  MI_F_5,    FN_MUTE, KC_VOLD,  KC_VOLU,
-            MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3,  MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4,  MI_Bb_4, MI_Db_5, MI_E_5,  MI_G_5,                MI_BENDD,
-    MI_SUS,   MI_A_2,  MI_C_3,  MI_Eb_3, MI_Fs_3, MI_A_3,  MI_C_4,  MI_Eb_4, MI_Fs_4, MI_A_4,  MI_C_5,  MI_Eb_5, MI_Fs_5,            MI_TRNSD, MI_TRNSU
+              MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,             MI_OCTD,  MI_OCTU,
+            MI_Fs2, MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,               MI_BNDU,
+              MI_Ab2, MI_B2,  MI_D3,  MI_F3,  MI_Ab3, MI_B3,  MI_D4,  MI_F4,  MI_Ab4, MI_B4,  MI_D5,  MI_F5,    FN_MUTE,
+            MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,  MI_G5,                MI_BNDD,
+    MI_SUST,   MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,            MI_TRSD, MI_TRSU
   ),
 
   /* B-system */
@@ -229,11 +253,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 
-              MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3, MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4, MI_Bb_4, MI_Db_5, MI_E_5,  MI_G_5,               _______, _______,
-            MI_Ab_2, MI_B_2,  MI_D_3,  MI_F_3, MI_Ab_3, MI_B_3,  MI_D_4,  MI_F_4, MI_Ab_4, MI_B_4,  MI_D_5,  MI_F_5, MI_Ab_5,                 _______,
-              MI_A_2,  MI_C_3,  MI_Eb_3, MI_Gb_3, MI_A_3, MI_C_4,  MI_Eb_4, MI_Gb_4, MI_A_4, MI_C_5,  MI_Eb_5, MI_Gb_5,     _______, _______, _______,
-            MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3, MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4, MI_Bb_4, MI_Db_5, MI_E_5,  MI_G_5,                 _______,
-    _______,  MI_Ab_2, MI_B_2,  MI_D_3,  MI_F_3, MI_Ab_3, MI_B_3,  MI_D_4,  MI_F_4, MI_Ab_4, MI_B_4,  MI_D_5,  MI_F_5,               _______, _______
+              MI_Bb2, MI_Db3, MI_E3,  MI_G3, MI_Bb3, MI_Db4, MI_E4,  MI_G4, MI_Bb4, MI_Db5, MI_E5,  MI_G5,               _______, _______,
+            MI_Ab2, MI_B2,  MI_D3,  MI_F3, MI_Ab3, MI_B3,  MI_D4,  MI_F4, MI_Ab4, MI_B4,  MI_D5,  MI_F5, MI_Ab5,                 _______,
+              MI_A2,  MI_C3,  MI_Eb3, MI_Gb3, MI_A3, MI_C4,  MI_Eb4, MI_Gb4, MI_A4, MI_C5,  MI_Eb5, MI_Gb5,     _______,
+            MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3, MI_Bb3, MI_Db4, MI_E4,  MI_G4, MI_Bb4, MI_Db5, MI_E5,  MI_G5,                 _______,
+    _______,  MI_Ab2, MI_B2,  MI_D3,  MI_F3, MI_Ab3, MI_B3,  MI_D4,  MI_F4, MI_Ab4, MI_B4,  MI_D5,  MI_F5,               _______, _______
   ),
 
   /* BASS2row */
@@ -245,11 +269,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______, _______, MI_CH_DbDom7, MI_CH_AbDom7, MI_CH_EbDom7, MI_CH_BbDom7, MI_CH_FDom7, MI_CH_CDom7, MI_CH_GDom7, MI_CH_DDom7, MI_CH_ADom7, MI_CH_EDom7, MI_CH_BDom7, MI_CH_FsDom7,
 
 
-              MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3,  MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4,  MI_Bb_4, MI_Db_5, MI_E_5,             _______, _______,
-            MI_Fs_2, MI_A_2,  MI_C_3,  MI_Eb_3, MI_Fs_3, MI_A_3,  MI_C_4,  MI_Eb_4, MI_Fs_4, MI_A_4,  MI_C_5,  MI_Eb_5, MI_Fs_5,              _______,
-              MI_Ab_2, MI_B_2,  MI_D_3,  MI_F_3,  MI_Ab_3, MI_B_3,  MI_D_4,  MI_F_4,  MI_Ab_4, MI_B_4,  MI_D_5,  MI_F_5,    _______, _______, _______,
-            MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3,  MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4,  MI_Bb_4, MI_Db_5, MI_E_5,  MI_G_5,               _______,
-    _______,  MI_A_2,  MI_C_3,  MI_Eb_3, MI_Fs_3, MI_A_3,  MI_C_4,  MI_Eb_4, MI_Fs_4, MI_A_4,  MI_C_5,  MI_Eb_5, MI_Fs_5,            _______, _______
+              MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,             _______, _______,
+            MI_Fs2, MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,              _______,
+              MI_Ab2, MI_B2,  MI_D3,  MI_F3,  MI_Ab3, MI_B3,  MI_D4,  MI_F4,  MI_Ab4, MI_B4,  MI_D5,  MI_F5,    _______,
+            MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,  MI_G5,               _______,
+    _______,  MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,            _______, _______
   ),
 
   /* BASS2row */
@@ -260,41 +284,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           _______, _______, MI_CH_Dbm,    MI_CH_Abm,    MI_CH_Ebm,    MI_CH_Bbm,    MI_CH_Fm,    MI_CH_Cm,    MI_CH_Gm,    MI_CH_Dm,    MI_CH_Am,    MI_CH_Em,    MI_CH_Bm,    MI_CH_Fsm,
             _______, _______, MI_CH_DbDom7, MI_CH_AbDom7, MI_CH_EbDom7, MI_CH_BbDom7, MI_CH_FDom7, MI_CH_CDom7, MI_CH_GDom7, MI_CH_DDom7, MI_CH_ADom7, MI_CH_EDom7, MI_CH_BDom7, MI_CH_FsDom7,
 
-              MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3, MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4, MI_Bb_4, MI_Db_5, MI_E_5,  MI_G_5,               _______, _______,
-            MI_Ab_2, MI_B_2,  MI_D_3,  MI_F_3, MI_Ab_3, MI_B_3,  MI_D_4,  MI_F_4, MI_Ab_4, MI_B_4,  MI_D_5,  MI_F_5, MI_Ab_5,                 _______,
-              MI_A_2,  MI_C_3,  MI_Eb_3, MI_Gb_3, MI_A_3, MI_C_4,  MI_Eb_4, MI_Gb_4, MI_A_4, MI_C_5,  MI_Eb_5, MI_Gb_5,     _______, _______, _______,
-            MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3, MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4, MI_Bb_4, MI_Db_5, MI_E_5,  MI_G_5,                 _______,
-    _______,  MI_Ab_2, MI_B_2,  MI_D_3,  MI_F_3, MI_Ab_3, MI_B_3,  MI_D_4,  MI_F_4, MI_Ab_4, MI_B_4,  MI_D_5,  MI_F_5,               _______, _______
+              MI_Bb2, MI_Db3, MI_E3,  MI_G3, MI_Bb3, MI_Db4, MI_E4,  MI_G4, MI_Bb4, MI_Db5, MI_E5,  MI_G5,               _______, _______,
+            MI_Ab2, MI_B2,  MI_D3,  MI_F3, MI_Ab3, MI_B3,  MI_D4,  MI_F4, MI_Ab4, MI_B4,  MI_D5,  MI_F5, MI_Ab5,                 _______,
+              MI_A2,  MI_C3,  MI_Eb3, MI_Gb3, MI_A3, MI_C4,  MI_Eb4, MI_Gb4, MI_A4, MI_C5,  MI_Eb5, MI_Gb5,     _______,
+            MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3, MI_Bb3, MI_Db4, MI_E4,  MI_G4, MI_Bb4, MI_Db5, MI_E5,  MI_G5,                 _______,
+    _______,  MI_Ab2, MI_B2,  MI_D3,  MI_F3, MI_Ab3, MI_B3,  MI_D4,  MI_F4, MI_Ab4, MI_B4,  MI_D5,  MI_F5,               _______, _______
   ),
 
   /* C-system entirely */
   [_C_SYSTEM_ENTIRELY] = LAYOUT(
-    _______, _______, MI_BENDU, XXXXXXX, XXXXXXX, MI_Db,   MI_E,    MI_G,    MI_Bb,   MI_Db_1, MI_E_1,  MI_G_1,  MI_Bb_1, MI_Db_2,
-      _______, _______, MI_BENDD, XXXXXXX, MI_C,    MI_Eb,   MI_Fs,   MI_A,    MI_C_1,  MI_Eb_1, MI_Fs_1, MI_A_1,  MI_C_2,  MI_Eb_2,
-        _______, _______, XXXXXXX, XXXXXXX, MI_D,    MI_F,    MI_Ab,   MI_B,    MI_D_1,  MI_F_1,  MI_Ab_1, MI_B_1,  MI_D_2,  MI_F_2,
-          _______, _______, XXXXXXX, MI_Db,   MI_E,    MI_G,    MI_Bb,   MI_Db_1, MI_E_1,  MI_G_1,  MI_Bb_1, MI_Db_2, MI_E_2,  MI_G_2,
-            _______, _______, MI_C,    MI_Eb,   MI_Fs,   MI_A,    MI_C_1,  MI_Eb_1, MI_Fs_1, MI_A_1,  MI_C_2,  MI_Eb_2, MI_Fs_2, MI_A_2,
+    _______, _______, MI_BNDU, XXXXXXX, XXXXXXX, MI_Db,   MI_E,    MI_G,    MI_Bb,   MI_Db1, MI_E1,  MI_G1,  MI_Bb1, MI_Db2,
+      _______, _______, MI_BNDD, XXXXXXX, MI_C,    MI_Eb,   MI_Fs,   MI_A,    MI_C1,  MI_Eb1, MI_Fs1, MI_A1,  MI_C2,  MI_Eb2,
+        _______, _______, XXXXXXX, XXXXXXX, MI_D,    MI_F,    MI_Ab,   MI_B,    MI_D1,  MI_F1,  MI_Ab1, MI_B1,  MI_D2,  MI_F2,
+          _______, _______, XXXXXXX, MI_Db,   MI_E,    MI_G,    MI_Bb,   MI_Db1, MI_E1,  MI_G1,  MI_Bb1, MI_Db2, MI_E2,  MI_G2,
+            _______, _______, MI_C,    MI_Eb,   MI_Fs,   MI_A,    MI_C1,  MI_Eb1, MI_Fs1, MI_A1,  MI_C2,  MI_Eb2, MI_Fs2, MI_A2,
 
-              MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3,  MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4,  MI_Bb_4, MI_Db_5, MI_E_5,                _______, _______,
-            MI_Fs_2, MI_A_2,  MI_C_3,  MI_Eb_3, MI_Fs_3, MI_A_3,  MI_C_4,  MI_Eb_4, MI_Fs_4, MI_A_4,  MI_C_5,  MI_Eb_5, MI_Fs_5,                 _______,
-              MI_Ab_2, MI_B_2,  MI_D_3,  MI_F_3,  MI_Ab_3, MI_B_3,  MI_D_4,  MI_F_4,  MI_Ab_4, MI_B_4,  MI_D_5,  MI_F_5,       _______, _______, _______,
-            MI_G_2,  MI_Bb_2, MI_Db_3, MI_E_3,  MI_G_3,  MI_Bb_3, MI_Db_4, MI_E_4,  MI_G_4,  MI_Bb_4, MI_Db_5, MI_E_5,  MI_G_5,                  _______,
-    _______,  MI_A_2,  MI_C_3,  MI_Eb_3, MI_Fs_3, MI_A_3,  MI_C_4,  MI_Eb_4, MI_Fs_4, MI_A_4,  MI_C_5,  MI_Eb_5, MI_Fs_5,               _______, _______
+              MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,                _______, _______,
+            MI_Fs2, MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,                 _______,
+              MI_Ab2, MI_B2,  MI_D3,  MI_F3,  MI_Ab3, MI_B3,  MI_D4,  MI_F4,  MI_Ab4, MI_B4,  MI_D5,  MI_F5,       _______,
+            MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,  MI_G5,                  _______,
+    _______,  MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,               _______, _______
   ),
 
   /* Chromatone */
   [_CHROMATONE] = LAYOUT(
-    _______, _______, MI_Db,   MI_Eb,   MI_F,    MI_G,    MI_A,    MI_B,    MI_Db_1, MI_Eb_1, MI_F_1,  MI_G_1,  MI_A_1,  MI_B_1,
-      _______, _______, MI_D,    MI_E,    MI_Fs,   MI_Ab,   MI_Bb,   MI_C_1,  MI_D_1,  MI_E_1,  MI_Fs_1, MI_Ab_1, MI_Bb_1, MI_C_2,
-        _______, _______, MI_Eb,   MI_F,    MI_G,    MI_A,    MI_B,    MI_Db_1, MI_Eb_1, MI_F_1,  MI_G_1,  MI_A_1,  MI_B_1,  MI_Db_2,
-          _______, _______, MI_E,    MI_Fs,   MI_Ab,   MI_Bb,   MI_C_1,  MI_D_1,  MI_E_1,  MI_Fs_1, MI_Ab_1, MI_Bb_1, MI_C_2,  MI_D_2,
-            _______, _______, MI_F,    MI_G,    MI_A,    MI_B,    MI_Db_1, MI_Eb_1, MI_F_1,  MI_G_1,  MI_A_1,  MI_B_1,  MI_Db_2, MI_Eb_2,
+    _______, _______, MI_Db,   MI_Eb,   MI_F,    MI_G,    MI_A,    MI_B,    MI_Db1, MI_Eb1, MI_F1,  MI_G1,  MI_A1,  MI_B1,
+      _______, _______, MI_D,    MI_E,    MI_Fs,   MI_Ab,   MI_Bb,   MI_C1,  MI_D1,  MI_E1,  MI_Fs1, MI_Ab1, MI_Bb1, MI_C2,
+        _______, _______, MI_Eb,   MI_F,    MI_G,    MI_A,    MI_B,    MI_Db1, MI_Eb1, MI_F1,  MI_G1,  MI_A1,  MI_B1,  MI_Db2,
+          _______, _______, MI_E,    MI_Fs,   MI_Ab,   MI_Bb,   MI_C1,  MI_D1,  MI_E1,  MI_Fs1, MI_Ab1, MI_Bb1, MI_C2,  MI_D2,
+            _______, _______, MI_F,    MI_G,    MI_A,    MI_B,    MI_Db1, MI_Eb1, MI_F1,  MI_G1,  MI_A1,  MI_B1,  MI_Db2, MI_Eb2,
 
-              MI_Db_2, MI_Eb_2, MI_F_2,  MI_G_2,  MI_A_2,  MI_B_2,  MI_Db_3, MI_Eb_3, MI_F_3,  MI_G_3,  MI_A_3,  MI_B_3,                _______, _______,
-            MI_C_2,  MI_D_2,  MI_E_2,  MI_Gb_2, MI_Ab_2, MI_Bb_2, MI_C_3,  MI_D_3,  MI_E_3,  MI_Gb_3, MI_Ab_3, MI_Bb_3, MI_C_4,                  _______,
-              MI_Db_2, MI_Eb_2, MI_F_2,  MI_G_2,  MI_A_2,  MI_B_2,  MI_Db_3, MI_Eb_3, MI_F_3,  MI_G_3,  MI_A_3,  MI_B_3,       _______, _______, _______,
-            MI_C_2,  MI_D_2,  MI_E_2,  MI_Gb_2, MI_Ab_2, MI_Bb_2, MI_C_3,  MI_D_3,  MI_E_3,  MI_Gb_3, MI_Ab_3, MI_Bb_3, MI_C_4,                  _______,
-    _______,  MI_Db_2, MI_Eb_2, MI_F_2,  MI_G_2,  MI_A_2,  MI_B_2,  MI_Db_3, MI_Eb_3, MI_F_3,  MI_G_3,  MI_A_3,  MI_B_3,                _______, _______
+              MI_Db2, MI_Eb2, MI_F2,  MI_G2,  MI_A2,  MI_B2,  MI_Db3, MI_Eb3, MI_F3,  MI_G3,  MI_A3,  MI_B3,                _______, _______,
+            MI_C2,  MI_D2,  MI_E2,  MI_Gb2, MI_Ab2, MI_Bb2, MI_C3,  MI_D3,  MI_E3,  MI_Gb3, MI_Ab3, MI_Bb3, MI_C4,                  _______,
+              MI_Db2, MI_Eb2, MI_F2,  MI_G2,  MI_A2,  MI_B2,  MI_Db3, MI_Eb3, MI_F3,  MI_G3,  MI_A3,  MI_B3,       _______,
+            MI_C2,  MI_D2,  MI_E2,  MI_Gb2, MI_Ab2, MI_Bb2, MI_C3,  MI_D3,  MI_E3,  MI_Gb3, MI_Ab3, MI_Bb3, MI_C4,                  _______,
+    _______,  MI_Db2, MI_Eb2, MI_F2,  MI_G2,  MI_A2,  MI_B2,  MI_Db3, MI_Eb3, MI_F3,  MI_G3,  MI_A3,  MI_B3,                _______, _______
   ),
 
   [_CFLIP_BASS2ROW] = LAYOUT(
@@ -304,41 +328,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           _______, _______, MI_CH_Dbm,    MI_CH_Abm,    MI_CH_Ebm,    MI_CH_Bbm,    MI_CH_Fm,    MI_CH_Cm,    MI_CH_Gm,    MI_CH_Dm,    MI_CH_Am,    MI_CH_Em,    MI_CH_Bm,    MI_CH_Fsm,
             _______, _______, MI_CH_DbDom7, MI_CH_AbDom7, MI_CH_EbDom7, MI_CH_BbDom7, MI_CH_FDom7, MI_CH_CDom7, MI_CH_GDom7, MI_CH_DDom7, MI_CH_ADom7, MI_CH_EDom7, MI_CH_BDom7, MI_CH_FsDom7,
 
-              MI_Fs_5, MI_Eb_5, MI_C_5,  MI_A_4,  MI_Fs_4, MI_Eb_4, MI_C_4,  MI_A_3,  MI_Fs_3, MI_Eb_3, MI_C_3,  MI_A_2,               _______, _______,
-            MI_G_5,  MI_E_5,  MI_Db_5, MI_Bb_4, MI_G_4,  MI_E_4,  MI_Db_4, MI_Bb_3, MI_G_3,  MI_E_3,  MI_Db_3, MI_Bb_2, MI_G_2,                 _______,
-              MI_F_5,  MI_D_5,  MI_B_4,  MI_Ab_4, MI_F_4,  MI_D_4,  MI_B_3,  MI_Ab_3, MI_F_3,  MI_D_3,  MI_B_2,  MI_Ab_2,     _______, _______, _______,
-            MI_Fs_5, MI_Eb_5, MI_C_5,  MI_A_4,  MI_Fs_4, MI_Eb_4, MI_C_4,  MI_A_3,  MI_Fs_3, MI_Eb_3, MI_C_3,  MI_A_2,  MI_Fs_2,                _______,
-    _______,  MI_E_5,  MI_Db_5, MI_Bb_4, MI_G_4,  MI_E_4,  MI_Db_4, MI_Bb_3, MI_G_3,  MI_E_3,  MI_Db_3, MI_Bb_2, MI_G_2,               _______, _______
+              MI_Fs5, MI_Eb5, MI_C5,  MI_A4,  MI_Fs4, MI_Eb4, MI_C4,  MI_A3,  MI_Fs3, MI_Eb3, MI_C3,  MI_A2,               _______, _______,
+            MI_G5,  MI_E5,  MI_Db5, MI_Bb4, MI_G4,  MI_E4,  MI_Db4, MI_Bb3, MI_G3,  MI_E3,  MI_Db3, MI_Bb2, MI_G2,                 _______,
+              MI_F5,  MI_D5,  MI_B4,  MI_Ab4, MI_F4,  MI_D4,  MI_B3,  MI_Ab3, MI_F3,  MI_D3,  MI_B2,  MI_Ab2,     _______,
+            MI_Fs5, MI_Eb5, MI_C5,  MI_A4,  MI_Fs4, MI_Eb4, MI_C4,  MI_A3,  MI_Fs3, MI_Eb3, MI_C3,  MI_A2,  MI_Fs2,                _______,
+    _______,  MI_E5,  MI_Db5, MI_Bb4, MI_G4,  MI_E4,  MI_Db4, MI_Bb3, MI_G3,  MI_E3,  MI_Db3, MI_Bb2, MI_G2,               _______, _______
   ),
 
   /* QWERTY */
   [_QWERTY] = LAYOUT_wrapper(
-    _______, _______, KC_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,
+    _______, _______, QK_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,
       _______, _______, KC_TAB,  _________________QWERTY_L1_________________, _________________QWERTY_R1_________________, KC_DEL,
         _______, _______, KC_CAPS, _________________QWERTY_L2_________________, _________________QWERTY_R2_________________, KC_ENT,
           _______, _______, KC_LSFT, _________________QWERTY_L3_________________, _________________QWERTY_R3_________________, KC_RSFT,
-            _______, _______, KC_LCTL, KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC,  KC_SPC,  KC_LANG1, KC_APP, MO_ADJ,  KC_LEFT, KC_DOWN, KC_RGHT,
+            _______, _______, KC_LCTL, KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC,  KC_SPC,  KC_LNG1, KC_APP, MO_ADJ,  KC_LEFT, KC_DOWN, KC_RGHT,
 
-               KC_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,            _______, _______,
+               QK_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,            _______, _______,
              KC_TAB,  _________________QWERTY_L1_________________, _________________QWERTY_R1_________________, KC_MINS, KC_DEL,               _______,
-               KC_LCTL, _________________QWERTY_L2_________________, _________________QWERTY_R2_________________, KC_ENT,    _______, _______, _______,
+               KC_LCTL, _________________QWERTY_L2_________________, _________________QWERTY_R2_________________, KC_ENT,    _______,
              KC_CAPS, KC_LSFT, _________________QWERTY_L3_________________, _________________QWERTY_R3_________________, KC_RSFT,              _______,
-    _______,   KC_LCTL, KC_GRV,  KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC, KC_SPC, KC_LANG1,  KC_APP,  KC_RALT, KC_RGUI,  KC_RCTL,           _______, _______
+    _______,   KC_LCTL, KC_GRV,  KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC, KC_SPC, KC_LNG1,  KC_APP,  KC_RALT, KC_RGUI,  KC_RCTL,           _______, _______
   ),
 
   /* COLEMAK */
   [_COLEMAK] = LAYOUT_wrapper(
-    _______, _______, KC_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,
+    _______, _______, QK_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,
       _______, _______, KC_TAB,  _________________COLEMAK_L1________________, _________________COLEMAK_R1________________, KC_DEL,
         _______, _______, KC_LCTL, _________________COLEMAK_L2________________, _________________COLEMAK_R2________________, KC_ENT,
           _______, _______, KC_LSFT, _________________COLEMAK_L3________________, _________________COLEMAK_R3________________, SHIF_UP,
-            _______, _______, KC_CAPS, KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC,  KC_SPC,  KC_LANG1, KC_APP, MO_ADJ,  KC_LEFT, KC_DOWN, KC_RGHT,
+            _______, _______, KC_CAPS, KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC,  KC_SPC,  KC_LNG1, KC_APP, MO_ADJ,  KC_LEFT, KC_DOWN, KC_RGHT,
 
-               KC_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,           _______, _______,
+               QK_GESC, _________________NUMBER_L__________________, _________________NUMBER_R__________________, KC_BSPC,           _______, _______,
             KC_TAB,  _________________COLEMAK_L1________________, _________________COLEMAK_R1________________, KC_MINS, KC_DEL,               _______,
-               KC_LCTL, _________________COLEMAK_L2________________, _________________COLEMAK_R2________________, KC_ENT,   _______, _______, _______,
+               KC_LCTL, _________________COLEMAK_L2________________, _________________COLEMAK_R2________________, KC_ENT,   _______,
             KC_CAPS, KC_LSFT, _________________COLEMAK_L3________________, _________________COLEMAK_R3________________, KC_RSFT,              _______,
-    _______,   KC_LCTL, KC_GRV,  KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC, KC_SPC, KC_LANG1,  KC_APP,  KC_RALT, KC_RGUI,  KC_RCTL,          _______, _______
+    _______,   KC_LCTL, KC_GRV,  KC_LGUI, KC_LALT, ADJ_EIS, KC_SPC, KC_SPC, KC_LNG1,  KC_APP,  KC_RALT, KC_RGUI,  KC_RCTL,          _______, _______
   ),
 
   /* ADJUST */
@@ -351,7 +375,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                _______, _________________FUNC__L___________________, _________________FUNC__R___________________, _______,             _______, _______,
              _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MINS, KC_EQL, _______, _______,                _______,
-               _______, KC_VOLD, KC_VOLU, KC_MUTE, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_GRV, _______,     _______, _______, _______,
+               _______, KC_VOLD, KC_VOLU, KC_MUTE, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_GRV, _______,     _______,
              _______, _______, KC_BRID, KC_BRIU, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LBRC, KC_RBRC, _______,               _______,
     _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_QUOT,   KC_BSLS,            _______, _______
   ),
@@ -360,16 +384,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Fn */
   [_FN] = LAYOUT(
     _______, _______, CSYSTEM, BSYSTEM, CNTBASC, CSYSALL, CHRTONE, CFLIP2B, CNTBASB, XXXXXXX, XXXXXXX, XXXXXXX, RGB_MOD, RGB_TOG,
-      _______, _______, DF_QWER, TGLBASS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, EEP_RST,
+      _______, _______, DF_QWER, TGLBASS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, EE_CLR,
         _______, _______, DF_COLE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TGLMICH,
           _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
             _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
                CSYSTEM,   BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, XXXXXXX, XXXXXXX, MI_VELD, MI_VELU, RGB_MOD,            _______, _______,
-             XXXXXXX, DF_QWER,   TGLBASS,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, TGLUVEL, MELDYAL, MELODYS, MELDYAH,                _______,
-               MI_OCT_N2, MI_OCT_N1, MI_OCT_0, MI_OCT_1, MI_OCT_2, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, VERSION, EEP_RST,   _______, RGB_RMOD, RGB_MOD,
+             XXXXXXX, DF_QWER,   TGLBASS,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, MI_TRSD, MI_TRSU, TGLUVEL, MELDYAL, MELODYS, MELDYAH,                _______,
+               MI_OCN2, MI_OCN1, MI_OC0, MI_OC1, MI_OC2, XXXXXXX,  XXXXXXX, MI_OCTD, MI_OCTU, XXXXXXX, VERSION, EE_CLR,    _______,
              CSYSTEM, BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, XXXXXXX, XXXXXXX, MI_VELD, MI_VELU, RGB_MOD, RGB_TOG,                _______,
-    _______,   DF_QWER,   TGLBASS,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, XXXXXXX, TGLUVEL, MELDYAL, MELODYS, MELDYAH,            _______, _______
+    _______,   DF_QWER,   TGLBASS,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  MI_TRSD, MI_TRSU, TGLUVEL, MELDYAL, MELODYS, MELDYAH,            _______, _______
   ),
 
   [_RESERVED] = LAYOUT(
@@ -381,15 +405,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            _______, _______,
              _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,              _______,
-               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______, _______, _______,
+               _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   _______,
              _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,              _______,
     _______,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            _______, _______
   )
 };
 
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
+    [_C_SYSTEM_BASE]        = { ENCODER_CCW_CW(KC_VOLD,  KC_VOLU) },
+    [_B_SYSTEM]             = { ENCODER_CCW_CW(_______,  _______) },
+    [_C_SYSTEM_BASS2ROW]    = { ENCODER_CCW_CW(_______,  _______) },
+    [_B_SYSTEM_BASS2ROW]    = { ENCODER_CCW_CW(_______,  _______) },
+    [_C_SYSTEM_ENTIRELY]    = { ENCODER_CCW_CW(_______,  _______) },
+    [_CHROMATONE]           = { ENCODER_CCW_CW(_______,  _______) },
+    [_CFLIP_BASS2ROW]       = { ENCODER_CCW_CW(_______,  _______) },
+    [_QWERTY]               = { ENCODER_CCW_CW(_______,  _______) },
+    [_COLEMAK]              = { ENCODER_CCW_CW(_______,  _______) },
+    [_ADJUST]               = { ENCODER_CCW_CW(_______,  _______) },
+    [_FN]                   = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD) },
+    [_RESERVED]             = { ENCODER_CCW_CW(_______,  _______) }
+};
+#endif
+
 void my_init(void){
-    //  Set octave to MI_OCT_0
-    midi_config.octave = MI_OCT_0 - MIDI_OCTAVE_MIN;
+    //  Set octave to QK_MIDI_OCTAVE_0
+    midi_config.octave = QK_MIDI_OCTAVE_0 - MIDI_OCTAVE_MIN;
     // avoid using 127 since it is used as a special number in some sound sources.
     midi_config.velocity = MIDI_INITIAL_VELOCITY;
 
@@ -401,7 +442,7 @@ void eeconfig_init_user(void) {  // EEPROM is getting reset!
     midi_init();
     my_init();
 
-    // Used to set octave to MI_OCT_0
+    // Used to set octave to QK_MIDI_OCTAVE_0
     midi_bass_ch = 0, midi_chord_ch = 0;  // By default, all use the same channel.
 
     // UNISON flags
@@ -421,7 +462,7 @@ void eeconfig_init_user(void) {  // EEPROM is getting reset!
 }
 
 #ifdef RGB_MATRIX_ENABLE
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
     uint8_t i;
 
     if (rgb_matrix_is_enabled()) {  // turn the lights on when it is enabled.
@@ -449,17 +490,18 @@ void rgb_matrix_indicators_user(void) {
 
                 rgb_matrix_set_color(75,  RGB_DARKWHITE);       //  DF_QWER
                 rgb_matrix_set_color(98,  RGB_DARKWHITE);       //  DF_COLE
-                rgb_matrix_set_color(86,  RGB_DARKPINK);        //  EEP_RST
+                rgb_matrix_set_color(86,  RGB_DARKPINK);        //  EE_CLR
                 rgb_matrix_set_color(87,  RGB_DARKTEAL);        //  TGLMICH
 
                 rgb_matrix_set_color(22, RGB_DARKCORAL);        //  TGLBASS  // giabalanai and giabalanaipico have different layouts on encoder LED location.
-                rgb_matrix_set_color(23, RGB_DARKWHITE);        //  DF_QWER
+                rgb_matrix_set_color(23, RGB_DARKWHITE);        //  DF_QWER  // giabalanai and giabalanaipico have different layouts on encoder LED location.
                 rgb_matrix_set_color(25, RGB_DARKBLUE);         //  MIDI Oct // giabalanai and giabalanaipico have different layouts on encoder LED location.
                 rgb_matrix_set_color(26, RGB_DARKCYAN);         //  MIDI Oct // giabalanai and giabalanaipico have different layouts on encoder LED location.
                 rgb_matrix_set_color(27, RGB_DARKSPRINGGREEN);  //  MIDI Oct // giabalanai and giabalanaipico have different layouts on encoder LED location.
                 rgb_matrix_set_color(28, RGB_DARKGREEN);        //  MIDI Oct // giabalanai and giabalanaipico have different layouts on encoder LED location.
                 rgb_matrix_set_color(29, RGB_DARKCHARTREUSE);   //  MIDI Oct // giabalanai and giabalanaipico have different layouts on encoder LED location.
-                rgb_matrix_set_color(37, RGB_DARKPINK);         //  EEP_RST
+                rgb_matrix_set_color(35, RGB_DARKGOLD);         //  VERSION  // giabalanai and giabalanaipico have different layouts on encoder LED location.
+                rgb_matrix_set_color(36, RGB_DARKPINK);         //  EE_CLR   // giabalanai and giabalanaipico have different layouts on encoder LED location.
                 rgb_matrix_set_color(41, RGB_DARKYELLOW);       //  MI_VELD
                 rgb_matrix_set_color(40, RGB_DARKGREEN);        //  MI_VELU
                 rgb_matrix_set_color(39, RGB_DARKBLUE);         //  RGB_MOD
@@ -473,6 +515,7 @@ void rgb_matrix_indicators_user(void) {
                 break;
         }
     }
+    return false;
 }
 #endif
 
@@ -619,30 +662,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         // MIDI Chord Keycodes, on the left side.
         case MI_CH_Cr ... MI_CH_Br:  // Root Notes
-            root_note = keycode - MI_CH_Cr + MI_C_1;
+            root_note = keycode - MI_CH_Cr + MI_C1;
             my_process_midi4Bass(midi_bass_ch, record, chord_status, chord, root_note, IS_SINGLE_BASS());
             break;
 
         case MI_CH_C ... MI_CH_B:  // Major Chords
-            root_note = keycode - MI_CH_C + MI_C_2;
+            root_note = keycode - MI_CH_C + MI_C2;
             // Root, Major Third, and Fifth Notes
             my_process_midi4TriadChords(midi_chord_ch, record, chord_status, chord, root_note, 0, 4, 7);
             break;
 
         case MI_CH_Cm ... MI_CH_Bm:  // Minor Chord
-            root_note = keycode - MI_CH_Cm + MI_C_2;
+            root_note = keycode - MI_CH_Cm + MI_C2;
             // Root, Minor Third, and Fifth Notes
             my_process_midi4TriadChords(midi_chord_ch, record, chord_status, chord, root_note, 0, 3, 7);
             break;
 
         case MI_CH_CDom7 ... MI_CH_BDom7:  // Dominant 7th Chord
-            root_note = keycode - MI_CH_CDom7 + MI_C_2;
+            root_note = keycode - MI_CH_CDom7 + MI_C2;
             // Major Third, Major Fifth, and Minor Seventh Notes
             my_process_midi4TriadChords(midi_chord_ch, record, chord_status, chord, root_note, 4, 7, 10);
             break;
 
         case MI_CH_CDim7 ... MI_CH_BDim7:                // Diminished 7th Chord
-            root_note = keycode - MI_CH_CDim7 + MI_C_2;
+            root_note = keycode - MI_CH_CDim7 + MI_C2;
             // Root, Minor Third, and Diminished 5th Note
             my_process_midi4TriadChords(midi_chord_ch, record, chord_status, chord, root_note, 0, 3, 6);
             break;
