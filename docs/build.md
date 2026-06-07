@@ -393,10 +393,10 @@ Wrote 119808 bytes to /Volumes/RPI-RP2/NEW.UF2
 ### 10.2 ###
 #### layers ####
 音符のレイアウト一覧<br>
-<img width="700" alt="Layer" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/20211128_giabalanaipico_layers.png"><br>
+<img width="700" alt="Layer" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/20260607_giabalanaipico_layers.png"><br>
 
 エンコーダボタン長押ししたときの様子 Function(FN) Layer<br>
-<img width="700" alt="Layer" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/20230526_giabalanaipico_FN_layer.png"><br>
+<img width="700" alt="Layer" src="https://github.com/3araht/giabalanaipico/blob/main/pictures/20260607_giabalanaipico_FN_layer.png"><br>
 
 
 
