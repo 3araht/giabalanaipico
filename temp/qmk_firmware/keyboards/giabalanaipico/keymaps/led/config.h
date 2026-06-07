@@ -17,5 +17,5 @@
 #pragma once
 /* via layer setting */
 /* default: 4 */
-#define DYNAMIC_KEYMAP_LAYER_COUNT 12
+#define DYNAMIC_KEYMAP_LAYER_COUNT 13
 

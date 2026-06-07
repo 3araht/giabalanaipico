@@ -94,6 +94,7 @@ enum layer_names {
     _B_SYSTEM_BASS2ROW,  //  counter bass B-system
     _C_SYSTEM_ENTIRELY,  //  single notes for both left and right keybaords.
     _C_SYSTEM_FREEBASS,  //  C-system Free Bass
+    _C_SYSTEM_FBM3,      //  C-system Free Bass Minor 3rd, bottom 5 rows
     _CHROMATONE,
     _CFLIP_BASS2ROW,     //  180 degree flipped layout on right side keyboard
     _QWERTY,
@@ -215,6 +216,7 @@ enum custom_keycodes {
     CNTBASB,  // CouNTer BASs B-system layout
     CSYSALL,  // C-SYStem ALL layout
     CSYSFBS,  // C-SYStem Free BaSs
+    CSYFBM3,  // C-SYstem Free Bass Minor 3rd
     CHRTONE,  // CHRomaTONE layout
     CFLIP2B,  // C-system FLIPped 2(to) Backwards
     TGLBASS,  // ToGgLe BASS unison
@@ -321,6 +323,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,            _______,  _______
   ),
 
+  /* C-system Free Bass Minor 3rd, bottom 5 rows */
+  [_C_SYSTEM_FBM3] = LAYOUT(
+    _______, _______, MI_Cs2, MI_Ab,  MI_Eb,  MI_Bb,  MI_F,   MI_C2,  MI_G,   MI_D2,  MI_A,  MI_E,   MI_B,   MI_Fs,
+      _______, _______, MI_Fs5, MI_Eb5, MI_C5,  MI_A4,  MI_Fs4, MI_Eb4, MI_C4,  MI_A3,  MI_Fs3, MI_Eb3, MI_C3,  MI_A2,
+        _______, _______, MI_F5,  MI_D5,  MI_B4,  MI_Ab4, MI_F4,  MI_D4,  MI_B3,  MI_Ab3, MI_F3,  MI_D3,  MI_B2,  MI_Ab2,
+          _______, _______, MI_E5,  MI_Db5, MI_Bb4, MI_G4,  MI_E4,  MI_Db4, MI_Bb3, MI_G3,  MI_E3,  MI_Db3, MI_Bb2, MI_G2,
+            _______, _______, MI_Eb5, MI_C5,  MI_A4,  MI_Fs4, MI_Eb4, MI_C4,  MI_A3,  MI_Fs3, MI_Eb3, MI_C3,  MI_A2,  MI_Fs2,
+
+              MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,             _______,  _______,
+            MI_Fs2, MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,               _______,
+              MI_Ab2, MI_B2,  MI_D3,  MI_F3,  MI_Ab3, MI_B3,  MI_D4,  MI_F4,  MI_Ab4, MI_B4,  MI_D5,  MI_F5,    _______,
+            MI_G2,  MI_Bb2, MI_Db3, MI_E3,  MI_G3,  MI_Bb3, MI_Db4, MI_E4,  MI_G4,  MI_Bb4, MI_Db5, MI_E5,  MI_G5,                _______,
+    _______,  MI_A2,  MI_C3,  MI_Eb3, MI_Fs3, MI_A3,  MI_C4,  MI_Eb4, MI_Fs4, MI_A4,  MI_C5,  MI_Eb5, MI_Fs5,            _______,  _______
+  ),
+
   /* Chromatone */
   [_CHROMATONE] = LAYOUT(
     _______, _______, MI_Db,   MI_Eb,   MI_F,    MI_G,    MI_A,    MI_B,    MI_Db1, MI_Eb1, MI_F1,  MI_G1,  MI_A1,  MI_B1,
@@ -398,16 +415,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Fn */
   [_FN] = LAYOUT(
-    _______, _______, CSYSTEM, BSYSTEM, CNTBASC, CSYSALL, CHRTONE, CFLIP2B, CNTBASB, CSYSFBS, XXXXXXX, XXXXXXX, RGB_MOD, RGB_TOG,
+    _______, _______, CSYSTEM, BSYSTEM, CNTBASC, CSYSALL, CHRTONE, CFLIP2B, CNTBASB, CSYSFBS, CSYFBM3, XXXXXXX, RGB_MOD, RGB_TOG,
       _______, _______, DF_QWER, TGLBASS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, EE_CLR,
         _______, _______, DF_COLE, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TGLMICH,
           _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
             _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 
-               CSYSTEM,   BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, CSYSFBS, XXXXXXX, MI_VELD, MI_VELU, RGB_MOD,            _______, _______,
+               CSYSTEM,   BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, CSYSFBS, CSYFBM3, MI_VELD, MI_VELU, RGB_MOD,            _______, _______,
              XXXXXXX, DF_QWER,   TGLBASS,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX, MI_TRSD, MI_TRSU, TGLUVEL, MELDYAL, MELODYS, MELDYAH,                _______,
                MI_OCN2, MI_OCN1, MI_OC0, MI_OC1, MI_OC2, XXXXXXX,  XXXXXXX, MI_OCTD, MI_OCTU, XXXXXXX, VERSION, EE_CLR,    _______,
-             CSYSTEM, BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, CSYSFBS, XXXXXXX, MI_VELD, MI_VELU, RGB_MOD, RGB_TOG,                _______,
+             CSYSTEM, BSYSTEM,   CNTBASC,  CSYSALL,  CHRTONE,  CFLIP2B,  CNTBASB, CSYSFBS, CSYFBM3, MI_VELD, MI_VELU, RGB_MOD, RGB_TOG,                _______,
     _______,   DF_QWER,   TGLBASS,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  MI_TRSD, MI_TRSU, TGLUVEL, MELDYAL, MELODYS, MELDYAH,            _______, _______
   )
 };
@@ -420,6 +437,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_B_SYSTEM_BASS2ROW]    = { ENCODER_CCW_CW(_______,  _______) },
     [_C_SYSTEM_ENTIRELY]    = { ENCODER_CCW_CW(_______,  _______) },
     [_C_SYSTEM_FREEBASS]    = { ENCODER_CCW_CW(_______,  _______) },
+    [_C_SYSTEM_FBM3]        = { ENCODER_CCW_CW(_______,  _______) },
     [_CHROMATONE]           = { ENCODER_CCW_CW(_______,  _______) },
     [_CFLIP_BASS2ROW]       = { ENCODER_CCW_CW(_______,  _______) },
     [_QWERTY]               = { ENCODER_CCW_CW(_______,  _______) },
@@ -477,7 +495,7 @@ bool rgb_matrix_indicators_user(void) {
                 // rgb_matrix_set_color(72, RGB_DARKORANGE);
                 break;
             case _FN:
-                for (i = 0;i < 8;i++) {
+                for (i = 0;i < 9;i++) {
                     rgb_matrix_set_color(74 - i, RGB_DARKORANGE);      //  MIDI layouts
                     //  right keyboard
                     rgb_matrix_set_color(i, RGB_DARKORANGE);      //  MIDI layouts
@@ -625,6 +643,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CSYSFBS:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_C_SYSTEM_FREEBASS);
+            }
+            break;
+
+        case CSYFBM3:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_C_SYSTEM_FBM3);
             }
             break;
 
